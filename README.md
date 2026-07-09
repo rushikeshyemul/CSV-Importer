@@ -34,7 +34,6 @@ This application uses **Gemini 2.5 Flash** to semantically understand CSV column
 | File Upload (server) | Multer |
 | AI | Google Gemini 2.5 Flash |
 | Validation | Zod |
-| Containerization | Docker + Docker Compose |
 
 ## Project Structure
 
@@ -68,7 +67,6 @@ groweasy-csv-importer/
 │           └── validators/        # Request validation
 │
 ├── sample-csvs/                   # Sample CSV files for testing
-├── docker-compose.yml
 └── README.md
 ```
 
@@ -127,21 +125,6 @@ npm run dev
 ```
 
 Frontend runs at `http://localhost:3000`
-
-## Running with Docker
-
-From the project root:
-
-```bash
-# Create a .env file with your API key
-echo "GEMINI_API_KEY=your_key_here" > .env
-
-# Build and start both services
-docker-compose up --build
-```
-
-- Frontend: `http://localhost:3000`
-- Backend: `http://localhost:4000`
 
 ## Environment Variables
 
