@@ -3,6 +3,13 @@ import path from "path";
 
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
+const parseAllowedOrigins = (origins: string) =>
+  origins
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+    .map((origin) => origin.replace(/\/+$/, ""));
+
 export const config = {
   port: parseInt(process.env.PORT ?? "4000", 10),
   nodeEnv: process.env.NODE_ENV ?? "development",
@@ -11,6 +18,6 @@ export const config = {
   aiMaxRetries: parseInt(process.env.AI_MAX_RETRIES ?? "3", 10),
   maxFileSize: 50 * 1024 * 1024, // 50MB
   allowedOrigins: process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(",")
+    ? parseAllowedOrigins(process.env.ALLOWED_ORIGINS)
     : ["http://localhost:3000", "http://localhost:3001"],
 } as const;
